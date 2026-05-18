@@ -628,7 +628,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    opacity: 0.6;
+    color: rgba(255, 255, 255, 0.85);
     font-size: 0.85rem;
 }
 
@@ -719,7 +719,18 @@ body {
     opacity: 0.6;
     font-size: 0.9rem;
 }
+[data-theme="dark"] .footer {
+    background: #141414; 
+    color: white;
+}
 
+[data-theme="dark"] .footer-brand h2,
+[data-theme="dark"] .footer-links-compact a,
+[data-theme="dark"] .footer-bottom,
+[data-theme="dark"] .footer-social a {
+    color: white;
+    opacity: 1;
+}
 /* Alerts */
 .alert-container {
     max-width: 800px;
@@ -968,4 +979,4 @@ body {
         visibility: visible !important;
         filter: blur(0) !important;
     }
-}
+}
