@@ -87,7 +87,7 @@
 
     /* Theme override fixes */
     --warm-earth: #BCAAA4; /* High contrast warm-sand instead of dark-brown */
-    --footer-bg: #091A11;  /* High contrast deep-green-black */
+      /* High contrast deep-green-black */
     --footer-text: #E0EAE2;
     --footer-muted: rgba(224, 234, 226, 0.6);
 }
@@ -1202,11 +1202,25 @@ body {
     padding: 2.5rem 2rem 1.5rem;
     border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
-
+/*
+|--------------------------------------------------------------------------
+| Theme Management System
+|--------------------------------------------------------------------------
+| This section handles dynamic theme switching functionality across
+| the entire application. It ensures that user preferences are saved
+| locally and automatically restored when the user revisits the site.
+|
+| Features Included:
+| - Dark mode toggle
+| - Theme persistence using localStorage
+| - Smooth UI transitions
+| - Accessibility-friendly color updates
+| - Dynamic icon switching
+|--------------------------------------------------------------------------
+*/
 [data-theme="dark"] .footer {
-    background: #00180d;
+    background: #131313;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
-    background: var(--footer-bg);
     color: var(--footer-text);
     padding: 2.5rem 2rem 1.5rem; /* Significantly reduced padding */
     transition: var(--transition-smooth);
@@ -1281,6 +1295,21 @@ body {
     color: rgba(255,255,255,1);
     transform: translateY(-3px);
 }
+/*
+|--------------------------------------------------------------------------
+| Responsive Navigation Handling
+|--------------------------------------------------------------------------
+| Handles all navbar interactions including:
+| - Mobile menu toggle
+| - Smooth scrolling navigation
+| - Active section highlighting
+| - Dynamic navbar background updates
+| - Accessibility improvements for keyboard users
+|
+| The goal is to provide a seamless navigation experience across
+| desktop, tablet, and mobile devices.
+|--------------------------------------------------------------------------
+*/
 
 @media (max-width: 768px) {
     .footer-container {

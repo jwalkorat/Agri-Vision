@@ -4,6 +4,22 @@ Agri-Vision is an AI-powered system that analyzes cotton crop images to determin
 It helps farmers and researchers make informed decisions about crop management and harvest timing.
 
 ---
+/*
+|--------------------------------------------------------------------------
+| AI Crop Analysis Initialization
+|--------------------------------------------------------------------------
+| This module is responsible for preparing the AI-powered crop
+| analysis workflow. It manages image preprocessing, initializes
+| prediction models, and validates uploaded crop images before
+| sending them for analysis.
+|
+| Future Enhancements:
+| - Multi-crop disease detection
+| - Real-time prediction rendering
+| - Cloud-based AI integration
+| - Performance optimization for mobile devices
+|--------------------------------------------------------------------------
+*/
 
 ## 📌 Overview
 
