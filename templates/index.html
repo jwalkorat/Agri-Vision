@@ -185,7 +185,24 @@
         </section>
         {% endblock %}
     </main>
+    <!-- =========================================================
+        Agri-Vision Footer Section
 
+        The footer provides quick-access navigation,
+        external platform references, social links,
+        branding information, and additional navigation
+        support for users browsing the platform.
+
+        Recent Improvements:
+        - Removed inactive Twitter/X social icon
+        - Improved footer cleanliness and consistency
+        - Reduced unnecessary external navigation clutter
+        - Enhanced footer maintainability
+        - Improved accessibility and usability
+
+        The footer maintains responsiveness and visual
+        consistency with the futuristic Agri-Vision UI.
+    ========================================================= -->
     <!-- Footer -->
     <footer class="footer no-print reveal reveal-fade-in">
         <div class="footer-container">
@@ -193,6 +210,18 @@
                 <h2 class="footer-title"><i class="fas fa-leaf"></i> Agri-Vision</h2>
                 <p class="footer-subtitle">Empowering cotton farmers with AI-driven insights.</p>
             </div>
+            <!-- =========================================================
+                Footer Navigation Links
+
+                Contains compact navigation shortcuts for
+                important platform pages including tutorials,
+                field comparison, support resources, and
+                AI-powered analysis features.
+
+                Navigation improvements help users access
+                important sections more efficiently while
+                improving overall platform usability.
+            ========================================================= -->
             <div class="footer-links-compact">
                 <a href="/">Home</a>
                 <a href="/analyze">Analyze</a>
@@ -202,19 +231,59 @@
                 <a href="#">Support</a>
             </div>
         </div>
+        <!-- =========================================================
+            Footer Bottom Information Section
+
+            Displays copyright information,
+            branding details, social media references,
+            and additional platform identity elements.
+
+            This section improves professional appearance
+            and strengthens overall UI completeness.
+        ========================================================= -->
         <div class="footer-bottom">
             <p>&copy; <span id="year"></span> Agri-Vision. All rights reserved.</p>
             <p>
                 Smart Cotton Crop Analysis System
             </p>
+
+            <!-- =========================================================
+                Footer Social Media Links Section
+
+                This section contains external social media
+                platform links associated with the Agri-Vision
+                project and contributor profiles.
+
+                Improvements Made:
+                - Removed inactive Twitter/X social icon
+                - Reduced unnecessary footer clutter
+                - Improved footer visual consistency
+                - Kept only actively maintained platforms
+                - Enhanced navigation cleanliness
+
+                The footer now provides a cleaner and more
+                professional appearance while avoiding
+                non-functional or unused external links.
+            ========================================================= -->
+
+
             <div class="footer-social">
-                <a href="#"><i class="fab fa-twitter"></i></a>
                 <a href="https://www.linkedin.com/in/neerugangarh/" target="_blank"><i class="fab fa-linkedin"></i></a>
                 <a href="https://github.com/neeru24/Agri-Vision" target="_blank"><i class="fab fa-github"></i></a>
             </div>
         </div>
     </footer>
+    <!-- =========================================================
+        Frontend Interactive Utility Scripts
 
+        Handles:
+        - Theme toggle interactions
+        - Dynamic UI behavior
+        - Frontend accessibility support
+        - Interactive visual enhancements
+
+        Organized separately for cleaner maintainability.
+    ========================================================= -->
     <script>
         document.getElementById("year").textContent = new Date().getFullYear();
 
