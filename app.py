@@ -564,6 +564,16 @@ def datetimeformat_filter(value):
 def tutorials():
     return render_template('tutorials.html')
 
+# =========================================================
+# Support Page Route
+# Provides centralized help and support access
+# for users interacting with the Agri-Vision platform
+# =========================================================
+
+@app.route('/support')
+def support():
+    return render_template('support.html')
+
 @app.route('/stories')
 def stories():
     return render_template("stories.html")

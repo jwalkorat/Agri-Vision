@@ -1,0 +1,166 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+<!-- =========================================================
+     Agri-Vision Support Page
+
+     This page provides users with a centralized support
+     and assistance section for the Agri-Vision platform.
+
+     The purpose of this page is to help users:
+     - Understand platform functionality
+     - Access troubleshooting guidance
+     - Find common FAQs
+     - Contact support resources
+     - Improve navigation accessibility
+
+     UI/UX Enhancements:
+     - Responsive support cards
+     - Clean visual hierarchy
+     - Modern glassmorphism styling
+     - Better readability and spacing
+     - Consistent dark-theme appearance
+========================================================= -->
+
+<div style="
+    margin-top: 140px;
+    margin-bottom: 80px;
+    padding: 0 20px;
+">
+
+    <!-- Support Header -->
+    <div style="
+        text-align: center;
+        margin-bottom: 60px;
+    ">
+
+        <h1 style="
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 18px;
+        ">
+            Support Center
+        </h1>
+
+        <p style="
+            max-width: 760px;
+            margin: auto;
+            line-height: 1.8;
+            color: var(--text-color, #cfcfcf);
+        ">
+            Get help with crop analysis, disease detection,
+            farming tutorials, troubleshooting guidance,
+            and platform-related assistance through the
+            Agri-Vision Support Center.
+        </p>
+
+    </div>
+
+    <!-- =========================================================
+         Support Information Cards Container
+
+         Organized support sections improve accessibility,
+         readability, and user guidance across desktop
+         and mobile screen sizes.
+    ========================================================== -->
+
+    <div style="
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 35px;
+    ">
+
+        <!-- FAQ Card -->
+        <div style="
+            width: 350px;
+            padding: 30px;
+            border-radius: 24px;
+            background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        ">
+
+            <h2 style="margin-bottom: 18px;">
+                Frequently Asked Questions
+            </h2>
+
+            <p style="
+                line-height: 1.8;
+                color: var(--text-color, #d0d0d0);
+            ">
+                Learn how to upload crop images, understand
+                prediction results, interpret confidence
+                scores, and use AI-powered disease analysis
+                effectively within the platform.
+            </p>
+
+        </div>
+
+        <!-- Troubleshooting Card -->
+        <div style="
+            width: 350px;
+            padding: 30px;
+            border-radius: 24px;
+            background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        ">
+
+            <h2 style="margin-bottom: 18px;">
+                Troubleshooting Help
+            </h2>
+
+            <p style="
+                line-height: 1.8;
+                color: var(--text-color, #d0d0d0);
+            ">
+                Access guidance related to image upload
+                issues, prediction loading problems,
+                unsupported file formats, and platform
+                responsiveness across devices.
+            </p>
+
+        </div>
+
+        <!-- Contact Card -->
+        <div style="
+            width: 350px;
+            padding: 30px;
+            border-radius: 24px;
+            background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        ">
+
+            <h2 style="margin-bottom: 18px;">
+                Contact & Assistance
+            </h2>
+
+            <p style="
+                line-height: 1.8;
+                color: var(--text-color, #d0d0d0);
+            ">
+                Reach out for platform-related support,
+                farming guidance, educational resources,
+                and future collaboration opportunities
+                related to Agri-Vision.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =========================================================
+     End of Support Page Content
+
+     This page improves navigation completeness and
+     provides users with a centralized support section
+     while maintaining consistency with the overall
+     Agri-Vision futuristic UI design language.
+========================================================= -->
+
+{% endblock %}
