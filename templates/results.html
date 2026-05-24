@@ -805,7 +805,6 @@
     </div>
   </div>
 </section>
-
 <script>
 
   document.addEventListener("DOMContentLoaded", function () {
@@ -958,6 +957,41 @@
     var utterance = new SpeechSynthesisUtterance("Here are your crop analysis insights. " + insights.join(" "));
     window.speechSynthesis.speak(utterance);
   }
+  // =====================================================
+  // Save Crop Analysis History To LocalStorage
+  // =====================================================
+  
+  document.addEventListener("DOMContentLoaded", function () {
+  
+      const cropHistory =
+          JSON.parse(localStorage.getItem("cropHistory")) || [];
+  
+      const scanData = {
+      
+          disease: `{{ disease.detected_issue|default("Unknown") }}`,
+      
+          confidence:
+              `{{ disease.model_confidence|default(0)|float|round(2) }}%`,
+      
+          treatment:
+              `{{ disease_info.get('treatment',
+              'No treatment available.') }}`,
+      
+          date:
+              `{{ timestamp }}`,
+      
+          image:
+              "data:image/jpeg;base64,{{ image_b64 }}"
+      };
+    
+      cropHistory.unshift(scanData);
+    
+      localStorage.setItem(
+          "cropHistory",
+          JSON.stringify(cropHistory)
+      );
+    
+  });
 </script>
 
 {% endblock %}

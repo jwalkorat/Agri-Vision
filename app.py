@@ -887,6 +887,10 @@ def health():
 def dashboard():
     return render_template("dashboard.html")
 
+@app.route("/history")
+def history():
+    return render_template("history.html")
+
 @app.route("/analyze", methods=["GET", "POST"])
 def analyze():
     if request.method == "POST":
