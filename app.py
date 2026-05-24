@@ -2,6 +2,7 @@
 Agri-Vision Flask Application
 Unified inference for disease classification (ResNet50) and growth stage prediction (YOLOv8)
 Thread-safe execution for production environments with Celery Async Support.
+Optimized via a Two-Pointer Ambiguity Filter for overlapping disease classes.
 """
 
 from __future__ import annotations
@@ -155,7 +156,7 @@ AMBIGUITY_MARGIN = 0.08
 
 
 # -------------------------------------------------------------------
-# THREAD-SAFE MODEL MANAGER (My advanced PR implementation)
+# THREAD-SAFE MODEL MANAGER
 # -------------------------------------------------------------------
 class ModelManager:
     _instance = None
@@ -237,7 +238,6 @@ class ModelManager:
 model_manager = ModelManager()
 
 def load_models():
-    """Wrapper for backward compatibility"""
     return model_manager.load_models()
 
 def ensure_models_loaded() -> None:
@@ -304,7 +304,6 @@ def apply_heatmap_on_image(image_rgb: np.ndarray, heatmap: np.ndarray, alpha: fl
 
 
 class GradCAM:
-    """Grad-CAM helper with explicit hook handle cleanup."""
     def __init__(self, model: torch.nn.Module, target_layer: torch.nn.Module):
         self.model = model
         self.target_layer = target_layer
@@ -407,12 +406,21 @@ def infer_disease(image: np.ndarray) -> Dict[str, Any]:
         probs_np = probs_np / probs_np.sum(axis=1, keepdims=True)
 
     probabilities = probs_np[0]
-    sorted_indices = np.argsort(probabilities)[::-1]
-    top1_idx = int(sorted_indices[0])
-    top2_idx = int(sorted_indices[1])
 
-    top1_conf = float(probabilities[top1_idx])
-    top2_conf = float(probabilities[top2_idx])
+    # -------------------------------------------------------------------
+    # TWO-POINTER RESOLUTION FILTER FOR OVERLAPPING DISEASES (#270 Feature)
+    # -------------------------------------------------------------------
+    indexed_probs = sorted(
+        [(float(prob), idx) for idx, prob in enumerate(probabilities)],
+        key=lambda x: x[0],
+        reverse=True
+    )
+
+    low = 0
+    high = 1
+
+    top1_conf, top1_idx = indexed_probs[low]
+    top2_conf, top2_idx = indexed_probs[high]
 
     predicted_class = disease_classes[top1_idx]
     alternative_class = disease_classes[top2_idx]
@@ -421,13 +429,25 @@ def infer_disease(image: np.ndarray) -> Dict[str, Any]:
     health_score = float(probabilities[healthy_idx]) * 100
 
     is_uncertain = top1_conf < UNCERTAINTY_THRESHOLD
-    is_ambiguous = abs(top1_conf - top2_conf) < AMBIGUITY_MARGIN
+    is_ambiguous = False
+    contender_classes = []
+
+    while high < len(indexed_probs):
+        current_conf, current_idx = indexed_probs[high]
+        if abs(top1_conf - current_conf) < AMBIGUITY_MARGIN:
+            is_ambiguous = True
+            contender_classes.append(disease_classes[current_idx])
+        high += 1
 
     interpretation_message = None
     if is_uncertain:
         interpretation_message = "The model could not make a confident prediction. Please upload a clearer crop image or seek expert review."
     elif is_ambiguous:
-        interpretation_message = f"The prediction is somewhat ambiguous between {predicted_class} and {alternative_class}."
+        if len(contender_classes) > 1:
+            contenders_str = ", ".join(contender_classes)
+            interpretation_message = f"The prediction is close between {predicted_class} and other localized indicators: {contenders_str}. Monitor the crop closely for overlapping symptoms."
+        else:
+            interpretation_message = f"The prediction is somewhat ambiguous between {predicted_class} and {alternative_class}."
 
     disease_confidences = {disease_classes[i]: float(probabilities[i]) for i in range(len(disease_classes))}
 
@@ -1274,7 +1294,6 @@ if __name__ == "__main__":
     logger.info("/health        - Health check")
     logger.info("=" * 60)
 
-    # Initialize models via the Thread-Safe ModelManager
     ensure_models_loaded()
     
     is_debug = os.getenv("FLASK_DEBUG", "False").lower() in ("true", "1", "t")
