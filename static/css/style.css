@@ -27,6 +27,15 @@
     
     /* Accent & Utility */
     --ai-blue: #4A90E2;
+    --success-bg: rgba(46, 139, 87, 0.1);
+    --success-text: #1b4332;
+    --success-border: rgba(46, 139, 87, 0.2);
+    --error-bg: rgba(220, 53, 69, 0.1);
+    --error-text: #721c24;
+    --error-border: rgba(220, 53, 69, 0.2);
+    --info-bg: rgba(74, 144, 226, 0.1);
+    --info-text: #0c5460;
+    --info-border: rgba(74, 144, 226, 0.2);
     --glass-bg: rgba(255, 255, 255, 0.65);
     --glass-border: rgba(255, 255, 255, 0.4);
     --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
@@ -87,6 +96,15 @@
 
     /* Theme override fixes */
     --warm-earth: #BCAAA4; /* High contrast warm-sand instead of dark-brown */
+    --success-bg: rgba(92, 209, 139, 0.15);
+    --success-text: #80ffb2;
+    --success-border: rgba(92, 209, 139, 0.3);
+    --error-bg: rgba(255, 107, 107, 0.15);
+    --error-text: #ff8e8e;
+    --error-border: rgba(255, 107, 107, 0.3);
+    --info-bg: rgba(100, 181, 246, 0.15);
+    --info-text: #90caf9;
+    --info-border: rgba(100, 181, 246, 0.3);
       /* High contrast deep-green-black */
     --footer-text: #E0EAE2;
     --footer-muted: rgba(224, 234, 226, 0.6);
@@ -179,7 +197,7 @@ body {
 }
 
 .main-content {
-    padding-top: 6.5rem; /* Space for the floating navbar */
+    padding-top: 120px; /* Space for the floating navbar */
 }
 
 /* Glassmorphism Utility */
@@ -1686,6 +1704,132 @@ body {
     flex-shrink: 0;
 }
 
+
+/* =========================================================
+   Demo Analysis Visual Hierarchy Enhancement System
+   ---------------------------------------------------------
+   This module focuses on improving the readability and
+   visual organization of AI-generated crop analysis data.
+
+   Goals:
+   - Improve user attention flow
+   - Create better spacing rhythm
+   - Enhance card distinction
+   - Improve mobile readability
+   - Modernize analytics presentation
+   - Maintain accessibility standards
+
+   Designed specifically for:
+   - Disease prediction cards
+   - Confidence tables
+   - Recommendation sections
+   - Crop growth analysis panels
+   ========================================================= */
+
+/* =========================================================
+   Enhanced Demo Analysis Result Card UI Improvements
+   =========================================================
+
+   This styling enhancement improves the visual hierarchy,
+   spacing, readability, and modern appearance of the
+   analysis result cards shown in the Demo page.
+
+   Improvements Included:
+   - Better card spacing
+   - Improved section separation
+   - Softer shadows and hover effects
+   - Enhanced typography readability
+   - Better responsive behavior
+   - Cleaner visual hierarchy
+   - Modern glassmorphism-inspired UI polish
+   - Improved table spacing and structure
+   - Smoother transition animations
+
+   These updates improve user engagement while maintaining
+   the existing Agri-Vision design system consistency.
+   ========================================================= */
+
+.result-card,
+.analysis-card,
+.demo-card {
+    border-radius: 24px;
+    padding: 2rem;
+    transition: all 0.35s ease;
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(93, 211, 139, 0.12);
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.18);
+}
+
+.result-card:hover,
+.analysis-card:hover,
+.demo-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 45px rgba(93, 211, 139, 0.18);
+}
+
+.result-card h2,
+.analysis-card h2,
+.demo-card h2 {
+    margin-bottom: 1rem;
+    letter-spacing: 0.3px;
+}
+
+.result-card p,
+.analysis-card p,
+.demo-card p {
+    line-height: 1.8;
+    opacity: 0.95;
+}
+
+.result-card table,
+.analysis-card table {
+    margin-top: 1.2rem;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.result-card tr,
+.analysis-card tr {
+    transition: background 0.2s ease;
+}
+
+.result-card tr:hover,
+.analysis-card tr:hover {
+    background: rgba(93, 211, 139, 0.05);
+}
+
+/* =========================================================
+   Mobile Responsiveness Enhancements
+   ========================================================= */
+
+@media (max-width: 768px) {
+    .result-card,
+    .analysis-card,
+    .demo-card {
+        padding: 1.4rem;
+        border-radius: 18px;
+    }
+
+    .result-card h2,
+    .analysis-card h2,
+    .demo-card h2 {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .result-card,
+    .analysis-card,
+    .demo-card {
+        padding: 1rem;
+    }
+
+    .result-card table,
+    .analysis-card table {
+        font-size: 0.9rem;
+    }
+}
+
 /* Field Photo Comparison */
 .comparison-page {
     padding-bottom: 5rem;
@@ -2374,16 +2518,6 @@ body {
     border-radius: 13px;
 }
 
-.results-table {
-    margin-bottom: 2.2rem;
-    min-width: 60%;
-    border-collapse: collapse;
-    border-radius: 12px;
-    overflow: hidden;
-    color: var(--text-main);
-    box-shadow: var(--glass-shadow);
-}
-
 .results-table th {
     background: var(--table-header-bg);
     padding: 12px;
@@ -2708,6 +2842,115 @@ fix-stories-card-alignment
 .stories-grid .card {
     width: 100%;
 
+
+    /* =========================================================
+   Advanced Stories Page Responsiveness Improvements
+
+   This enhancement improves:
+   - Card alignment consistency
+   - Responsive grid spacing
+   - Mobile readability
+   - Hover interaction smoothness
+   - Layout adaptability for smaller screens
+   - Visual balance across device sizes
+
+   The goal is to create a cleaner,
+   more modern, and responsive stories page
+   experience while preserving the Agri-Vision
+   futuristic UI design language.
+========================================================= */
+
+/* Smooth interaction animation improvements */
+
+.stories-grid .card {
+    will-change: transform;
+
+    width: 100%;
+}
+
+/* Improved hover interaction */
+
+.stories-grid .card:hover {
+    transform:
+        translateY(-10px)
+        scale(1.02);
+
+    box-shadow:
+        0 18px 40px rgba(0,0,0,0.28),
+        0 0 20px rgba(76,255,153,0.10);
+
+    cursor: pointer;
+}
+
+/* Responsive container spacing improvements */
+
+.stories-header {
+    max-width: 720px;
+
+    margin-inline: auto;
+}
+
+.stories-grid {
+    row-gap: 2rem;
+}
+
+/* =========================================================
+   Tablet Responsive Optimization
+========================================================= */
+
+@media (max-width: 992px) {
+
+    .stories-grid {
+        gap: 1.8rem;
+    }
+
+    .stories-grid .card {
+        min-height: 100%;
+    }
+}
+
+/* =========================================================
+   Mobile Responsive Optimization
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .stories-grid {
+        grid-template-columns: 1fr;
+
+        gap: 1.5rem;
+    }
+
+    .stories-grid .card {
+        border-radius: 20px;
+
+        padding: 1.5rem;
+    }
+
+    .stories-grid .card-body {
+        gap: 1rem;
+    }
+}
+
+/* =========================================================
+   Small Device Readability Improvements
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .stories-grid .card h3 {
+        font-size: 1.2rem;
+    }
+
+    .stories-grid .card p {
+        line-height: 1.7;
+    }
+
+    .stories-grid {
+        gap: 1.2rem;
+    }
+}
+
 /* ==========================================================
    Enhanced Demo Results Page UI/UX Styling
    ----------------------------------------------------------
@@ -2728,7 +2971,7 @@ fix-stories-card-alignment
 ========================================================== */
 
 /* Enhanced Results UI */
-
+}
 .result-card {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255,255,255,0.06);
@@ -2821,3 +3064,844 @@ fix-stories-card-alignment
     box-shadow: 0 0 15px rgba(93,211,139,0.45);
  main
 }`n/* =========================================================`n   Print & Export PDF Styles`n   ========================================================= */`n@media print {`n    .no-print, `n    .navbar, `n    .footer, `n    .upload-btn, `n    #toggle-ai-focus, `n    .results-summary, `n    .results-pre,`n    .trail-container,`n    .theme-toggle-btn {`n        display: none !important;`n    }`n`n    body {`n        background: white !important;`n        color: black !important;`n    }`n`n    .main-content {`n        padding-top: 0 !important;`n    }`n`n    .glass-card {`n        background: white !important;`n        box-shadow: none !important;`n        border: 1px solid #ddd !important;`n        backdrop-filter: none !important;`n        -webkit-backdrop-filter: none !important;`n    }`n`n    .results-card {`n        margin: 0 !important;`n        padding: 0 !important;`n        width: 100% !important;`n        box-shadow: none !important;`n    }`n`n    .result-card {`n        page-break-inside: avoid;`n        margin-bottom: 20px !important;`n        border: 1px solid #eee !important;`n        padding: 15px !important;`n        background: white !important;`n    }`n`n    .results-section-title {`n        color: #2E8B57 !important;`n    }`n`n    .health-bar {`n        border: 1px solid #ddd !important;`n        background: #f5f5f5 !important;`n        -webkit-print-color-adjust: exact;`n        print-color-adjust: exact;`n    }`n`n    .health-fill {`n        background: #2E8B57 !important;`n        -webkit-print-color-adjust: exact;`n        print-color-adjust: exact;`n    }`n}
+}
+
+/* =========================================================
+   Active Navbar Highlight Styling
+   Improves navigation clarity and user orientation
+   across Agri-Vision pages
+
+.nav-link {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+/* Active page highlight */
+.active-nav {
+    color: #57e389 !important;
+    font-weight: 700;
+}
+
+/* Animated underline effect */
+.active-nav::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 2px;
+    background: #57e389;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(87, 227, 137, 0.6);
+}
+
+/* Hover improvement for navbar links */
+.nav-link:hover {
+    color: #57e389;
+}
+
+/* =========================================================
+   ADVANCED NAVIGATION EXPERIENCE ENHANCEMENT
+   =========================================================
+   This styling block was added to improve the overall
+   user navigation experience inside the Agri-Vision
+   platform interface.
+
+   The previous navbar implementation worked correctly,
+   but lacked visual indication for the currently active
+   page. This could create confusion for users navigating
+   between different agricultural analysis modules.
+
+   Improvements introduced in this enhancement:
+
+   ✔ Active page highlighting
+   ✔ Smooth hover transitions
+   ✔ Modern glowing underline animation
+   ✔ Better visual hierarchy
+   ✔ Improved accessibility and orientation
+   ✔ Consistent futuristic UI appearance
+   ✔ Enhanced dark-theme compatibility
+   ✔ Better responsiveness for different screen sizes
+   ✔ Improved readability for navbar interactions
+   ✔ More professional production-style navigation feel
+
+   Design Goals:
+   ---------------------------------------------------------
+   - Maintain Agri-Vision cyber/agri aesthetic
+   - Keep navbar lightweight and responsive
+   - Improve navigation clarity for users
+   - Add subtle animation without distraction
+   - Match green AI-inspired visual identity
+
+   Technical Notes:
+   ---------------------------------------------------------
+   The active navbar system uses:
+   - pseudo-elements (::after)
+   - transition animations
+   - glow shadows
+   - custom highlight coloring
+   - reusable nav-link utility classes
+
+   Future Expansion Possibilities:
+   ---------------------------------------------------------
+   - Dynamic active page detection using Flask/Jinja
+   - Animated page transition indicators
+   - Gradient underline effects
+   - Mobile navigation active states
+   - Scroll-aware navbar highlighting
+   - Breadcrumb integration
+   - Multi-theme compatibility
+
+   This enhancement contributes toward improving
+   the professional frontend experience of the
+   Agri-Vision AI-powered agricultural platform.
+
+/*  MOBILE RESPONSIVENESS */
+
+@media (max-width: 768px) {
+
+    body {
+        overflow-x: hidden;
+    }
+
+    .container {
+        padding: 1rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    p {
+        font-size: 0.95rem;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+/* MOBILE NAVBAR FIX */
+
+@media (max-width:768px){
+
+    .navbar{
+        position: fixed;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+
+        width: 92%;
+        z-index: 9999;
+
+        padding: 12px 16px;
+        border-radius: 18px;
+
+        background: rgba(255,255,255,.92);
+        backdrop-filter: blur(10px);
+
+        box-shadow: 0 8px 20px rgba(0,0,0,.08);
+
+        overflow: visible;
+    }
+
+    .nav-container{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+
+        flex-wrap:nowrap !important;
+        flex-direction:row !important;
+
+        padding:0 !important;
+    }
+
+    .nav-brand{
+        display:flex;
+        align-items:center;
+        gap:8px;
+
+        min-width:0;
+        overflow:visible;
+    }
+
+    .nav-brand img,
+    .nav-logo{
+        width:28px;
+        height:28px;
+        flex-shrink:0;
+    }
+
+    .nav-brand h1,
+    .nav-brand span{
+        font-size:1.2rem !important;
+        white-space:nowrap;
+        margin:0;
+    }
+
+    .nav-menu{
+        display:none;
+    }
+ /* page spacing under fixed navbar */
+    body{
+        padding-top:85px;
+    }
+
+}
+/* MOBILE UPLOAD AREA FIX*/
+
+@media (max-width: 768px) {
+
+    .upload-area {
+        padding: 1rem !important;
+        min-height: auto;
+    }
+
+    .upload-area i {
+        font-size: 2rem !important;
+    }
+
+    .upload-area p {
+        line-height: 1.4;
+    }
+
+    .glass-card {
+        padding: 1rem !important;
+    }
+
+    .section-header h1 {
+        font-size: 1.8rem !important;
+    }
+
+    .section-header p {
+        font-size: 0.9rem !important;
+    }
+}
+.results-main-title{
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: var(--emerald-green);
+}
+.results-subtitle{
+    font-size: 0.95rem;
+}
+.result-card{
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    backdrop-filter: blur(14px);
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.result-card:hover{
+    transform: translateY(-4px);
+    border-color: rgba(46,139,87,0.35);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+.results-table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    overflow: hidden;
+    border-radius: 12px;
+    table-layout: fixed;
+}
+
+.results-table th{
+    background: rgba(46,139,87,0.12);
+    padding: 14px;
+    text-align: left;
+}
+
+.results-table td{
+    padding: 12px 14px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.results-table tr:hover{
+    background: rgba(255,255,255,0.03);
+}
+.health-bar{
+    width: 100%;
+    height: 14px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 999px;
+    overflow: hidden;
+    margin: 0.7rem 0;
+}
+
+.health-fill{
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg,#00c853,#69f0ae);
+    box-shadow: 0 0 18px rgba(0,200,83,0.45);
+    transition: width 0.6s ease;
+}
+.result-img{
+    width: 100%;
+    border-radius: 18px;
+    border: 2px solid rgba(46,139,87,0.2);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.18);
+}
+.results-list li{
+    line-height: 1.8;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+.container{
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    box-sizing: border-box;
+}
+ .results-list{
+    padding-left: 1.2rem;
+    word-break: break-word;
+}
+.bbox-cell{
+    font-size: 0.9rem;
+    line-height: 1.5;
+    word-break: break-word;
+}
+
+/* Smooth Global Transitions */
+* {
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease;
+}
+
+/* Better Mobile Spacing */
+@media (max-width: 768px) {
+
+    section {
+        padding: 3rem 1rem !important;
+    }
+
+    .container,
+    .dashboard-container,
+    .results-container {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+
+    .dashboard-card,
+    .result-card,
+    .glass-card,
+    .feature-card {
+        padding: 1rem !important;
+        border-radius: 16px !important;
+    }
+
+    .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .dashboard-status-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .hero {
+        min-height: auto;
+        padding-top: 7rem;
+    }
+
+    .hero-content h1 {
+        font-size: 1.8rem !important;
+        line-height: 1.3;
+    }
+
+    .hero-content p {
+        font-size: 0.95rem;
+    }
+
+    .hero-cta {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .hero-cta .btn-primary,
+    .hero-cta .btn-secondary {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Better Responsive Grids */
+@media (max-width: 600px) {
+
+    .results-grid,
+    .dashboard-metrics-grid,
+    .probabilities-grid,
+    .stories-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .feature-card,
+    .result-card,
+    .dashboard-card {
+        min-width: 100%;
+    }
+}
+
+/* Responsive Tables */
+.results-table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Prevent Long Text Overflow */
+h1, h2, h3, h4, p, span, a, li {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Prevent Image Overflow */
+img,
+canvas,
+video {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Mobile Floating Elements Fix */
+@media (max-width: 768px) {
+
+    .floating-telemetry-1,
+    .floating-telemetry-2 {
+        position: static;
+        margin-top: 1rem;
+        width: 100%;
+        animation: none;
+    }
+
+    .scanner-container {
+        overflow: hidden;
+    }
+}
+
+/* Skeleton Loading Animation */
+.skeleton {
+    position: relative;
+    overflow: hidden;
+    background: rgba(255,255,255,0.08);
+    border-radius: 12px;
+}
+
+.skeleton::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,0.18),
+        transparent
+    );
+    animation: skeleton-loading 1.2s infinite;
+}
+
+@keyframes skeleton-loading {
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Spinner Loader */
+.loader {
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(255,255,255,0.15);
+    border-top-color: var(--emerald-green);
+    border-radius: 50%;
+    animation: spinLoader 0.8s linear infinite;
+    margin: 2rem auto;
+}
+
+@keyframes spinLoader {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Fade Loading Transition */
+.fade-loading {
+    animation: fadeContent 0.4s ease;
+}
+
+@keyframes fadeContent {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Better Touch Interaction */
+button,
+a,
+.card,
+.btn-primary,
+.btn-secondary {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Mobile Typography Scaling */
+html {
+    font-size: clamp(14px, 1vw, 16px);
+}
+
+/* Reduce Heavy Animations on Mobile */
+@media (max-width: 768px) {
+
+    .blob,
+    .scanner-laser,
+    .mock-bbox,
+    .feature-card:hover,
+    .result-card:hover,
+    .dashboard-card:hover {
+        animation: none !important;
+        transform: none !important;
+    }
+}
+/* =========================================================
+   Footer Responsiveness & Spacing Improvements
+   =========================================================
+   This styling enhancement improves the footer layout
+   across tablets, mobile devices, and smaller screens.
+
+   Key improvements included:
+   ---------------------------------------------------------
+   ✔ Better footer spacing
+   ✔ Improved mobile responsiveness
+   ✔ Cleaner stacked layout
+   ✔ Better text readability
+   ✔ Reduced overcrowding
+   ✔ Flexible wrapping behavior
+   ✔ Improved alignment consistency
+   ✔ Enhanced small-screen usability
+   ✔ Better footer navigation visibility
+   ✔ Modern responsive spacing structure
+
+   The previous footer layout appeared slightly compressed
+   on smaller screens and required better spacing behavior
+   for improved readability and accessibility.
+
+   This enhancement ensures the footer maintains
+   Agri-Vision's modern futuristic design language
+   while adapting smoothly across multiple resolutions.
+
+/* Footer responsive layout improvements */
+.footer-container {
+    gap: 2rem;
+}
+
+/* Footer links spacing enhancement */
+.footer-links-compact {
+    gap: 1.2rem;
+    flex-wrap: wrap;
+}
+
+/* Better footer bottom alignment */
+.footer-bottom {
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* Responsive adjustments for tablets */
+@media (max-width: 768px) {
+
+    .footer-container {
+        padding: 2rem 1.5rem;
+        text-align: center;
+    }
+
+    .footer-links-compact {
+        justify-content: center;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-social {
+        justify-content: center;
+    }
+}
+
+/* Mobile screen optimization */
+@media (max-width: 480px) {
+
+    .footer-container {
+        padding: 1.5rem 1rem;
+    }
+
+    .footer-links-compact {
+        gap: 0.8rem;
+        font-size: 0.92rem;
+    }
+
+    .footer-title {
+        font-size: 1.4rem;
+    }
+
+    .footer-subtitle {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    .footer-bottom {
+        gap: 0.7rem;
+    }
+
+    .footer-social {
+        gap: 0.8rem;
+    }
+}
+
+/* =========================================================
+   Additional Footer UI Enhancement Notes
+   =========================================================
+   Future footer improvements may include:
+
+   - Animated footer reveal transitions
+   - Dynamic copyright year logic
+   - Accessibility contrast improvements
+   - Social icon hover glow animations
+   - Multi-column responsive footer grids
+   - Better keyboard navigation visibility
+   - Progressive mobile layout optimization
+   - Advanced glassmorphism footer styling
+   - Sticky responsive footer behavior
+   - Dynamic quick-link organization
+
+   This enhancement contributes toward creating
+   a more production-ready responsive experience
+   for Agri-Vision users across modern devices.
+
+   The footer now behaves more consistently
+   across different viewport dimensions while
+   preserving readability and navigation clarity.
+.agri-scan-history-panel {
+    margin-top: 2rem;
+    padding: 1.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 20px;
+    background: rgba(8, 22, 18, 0.68);
+    box-shadow: 0 16px 38px rgba(0, 0, 0, 0.28);
+    backdrop-filter: blur(16px);
+}
+
+.agri-scan-history-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.agri-scan-history-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 1rem;
+}
+
+.agri-scan-history-card {
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+    transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+}
+
+.agri-scan-history-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(45, 212, 117, 0.38);
+    box-shadow: 0 18px 36px rgba(0, 0, 0, 0.3);
+}
+
+.agri-scan-history-img {
+    display: block;
+    width: 100%;
+    height: 145px;
+    object-fit: cover;
+    background: rgba(0, 0, 0, 0.22);
+}
+
+.agri-scan-history-body {
+    padding: 0.9rem;
+}
+
+.agri-scan-history-disease {
+    color: #ffffff;
+    font-size: 0.98rem;
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+}
+
+.agri-scan-history-confidence,
+.agri-scan-history-date,
+.agri-scan-history-empty {
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 0.84rem;
+}
+
+.agri-scan-history-date {
+    margin-top: 0.25rem;
+}
+
+.agri-scan-history-empty {
+    padding: 0.9rem;
+    border: 1px dashed rgba(255, 255, 255, 0.16);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.agri-scan-history-delete {
+    margin-top: 0.8rem;
+    padding: 0.45rem 0.75rem;
+    border: 1px solid rgba(255, 95, 95, 0.35);
+    border-radius: 999px;
+    background: rgba(239, 68, 68, 0.16);
+    color: #ffd4d4;
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.agri-scan-history-delete:hover {
+    background: rgba(239, 68, 68, 0.28);
+    transform: translateY(-1px);
+}
+
+.agri-leaf-compare-wrap {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 22px;
+    background: rgba(12, 22, 20, 0.72);
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+    backdrop-filter: blur(18px);
+}
+
+.agri-leaf-compare-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+}
+
+.agri-leaf-compare-card {
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.agri-leaf-compare-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(78, 214, 122, 0.35);
+    box-shadow: 0 18px 42px rgba(0, 0, 0, 0.32);
+}
+
+.agri-leaf-compare-imagebox {
+    position: relative;
+    width: 100%;
+    height: 260px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.agri-leaf-compare-imagebox img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    display: block;
+}
+
+.agri-leaf-healthy-label,
+.agri-leaf-diseased-label {
+    position: absolute;
+    left: 1rem;
+    bottom: 1rem;
+    padding: 0.4rem 0.75rem;
+    border-radius: 999px;
+    color: #ffffff;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+}
+
+.agri-leaf-healthy-label {
+    background: rgba(34, 197, 94, 0.88);
+}
+
+.agri-leaf-diseased-label {
+    background: rgba(239, 68, 68, 0.88);
+}
+
+.agri-leaf-symptoms-panel,
+.agri-leaf-treatment-panel {
+    margin-top: 1rem;
+    padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.055);
+    color: rgba(255, 255, 255, 0.86);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+}
+
+.agri-leaf-symptoms-panel strong,
+.agri-leaf-treatment-panel strong {
+    color: #9ff0b8;
+}
+
+@media (max-width: 768px) {
+    .agri-scan-history-panel {
+        padding: 1rem;
+    }
+
+    .agri-scan-history-list,
+    .agri-leaf-compare-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .agri-leaf-compare-wrap {
+        padding: 1rem;
+    }
+}
+
+/* Loading State Protection */
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+}

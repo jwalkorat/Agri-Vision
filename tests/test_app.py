@@ -109,6 +109,7 @@ def test_infer_growth_stage_fallback(monkeypatch):
 
 def test_analyze_image_without_growth_detection(monkeypatch):
     monkeypatch.setattr(app, "yolo_model", None)
+    monkeypatch.setattr(app, "_models_loaded", True)
     dummy_img = np.zeros((100, 100, 3), dtype=np.uint8)
     result = app.analyze_image(dummy_img)
     assert "disease" in result
@@ -139,6 +140,7 @@ def test_generate_recommendations():
         "confidence": 0.9,
         "all_confidences": {},
         "health_score": 45.0,
+        "is_uncertain": True,
         "raw": [],
     }
     growth_res = {
@@ -151,7 +153,7 @@ def test_generate_recommendations():
     recs = app.generate_recommendations(disease_res, growth_res)
     assert isinstance(recs, list)
     assert len(recs) > 0
-    assert any("Consult an agricultural expert" in r for r in recs)
+    assert any("consult an agricultural expert" in r.lower() for r in recs)
     assert any("insecticides" in r for r in recs or "Aphids" in r)
     assert any("blossom" in r.lower() for r in recs)
 
@@ -326,6 +328,26 @@ def test_post_comparison_invalid_crop_image(client, monkeypatch):
         b"Unable to compare images" in resp.data
         or b"Unable to verify cotton crop" in resp.data
     )
+
+
+def test_post_comparison_duplicate_image(client):
+    # Create the same image twice
+    image_content = io.BytesIO()
+    Image.new("RGB", (100, 100), color="blue").save(image_content, format="PNG")
+    
+    # We need two separate BytesIO objects with the same content for the request
+    image_one = io.BytesIO(image_content.getvalue())
+    image_two = io.BytesIO(image_content.getvalue())
+
+    data = {
+        "last_week_image": (image_one, "field_1.png"),
+        "current_week_image": (image_two, "field_2.png"),
+    }
+    
+    resp = client.post("/comparison", data=data, content_type="multipart/form-data")
+    assert resp.status_code == 200
+    assert b"Duplicate field images detected" in resp.data
+    assert b"Please upload two different images" in resp.data
 
 
 def test_post_comparison_fallback_when_both_images_no_growth(client, monkeypatch):

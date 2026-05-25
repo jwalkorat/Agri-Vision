@@ -18,6 +18,8 @@
     </script>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- PDF.js for PDF to Image conversion -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
     <!-- Three.js CDN for interactive 3D model simulation -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
@@ -113,6 +115,8 @@
     <div class="print-frame no-print"></div>
 
     <!-- Navigation -->
+
+
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="/" class="nav-brand">
@@ -127,6 +131,7 @@
                 <li><a href="/demo">Demo</a></li>
                 <li><a href="/tutorials">Tutorials</a></li>
                 <li><a href="/stories">Stories</a></li>
+                <li><a href="/history">History</a></li>
                 <li>
                     <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle dark mode">
                         <i class="fas fa-moon"></i>
@@ -136,7 +141,9 @@
             </ul>
         </div>
     </nav>
-
+<!-- =========================================================
+     Temporary Merge Conflict Text Cleanup
+========================================================= -->
     <!-- Main Content -->
     <main>
         {% with messages = get_flashed_messages(with_categories=true) %}
@@ -322,7 +329,7 @@
                 <a href="/">Home</a>
                 <a href="/analyze">Analyze</a>
                 <a href="/comparison">Field Comparison</a>
-                <a href="/dashboard">Dashboard</a>
+                <a href="{{ url_for('dashboard') }}">Dashboard</a>
                 <a href="/demo">Demo</a>
                 <a href="/tutorials">Tutorials</a>
                 <a href="{{ url_for('support') }}">Support</a>
@@ -385,36 +392,52 @@
         document.getElementById("year").textContent = new Date().getFullYear();
 
         // Theme Toggle Logic
-        const themeToggleBtn = document.getElementById('theme-toggle');
-        const themeIcon = themeToggleBtn ? themeToggleBtn.querySelector('i') : null;
+        document.addEventListener('DOMContentLoaded', () => {
 
-        function updateThemeIcon() {
-            if (!themeIcon) return;
-            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-            if (isDark) {
-                themeIcon.classList.remove('fa-moon');
-                themeIcon.classList.add('fa-sun');
-            } else {
-                themeIcon.classList.remove('fa-sun');
-                themeIcon.classList.add('fa-moon');
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const themeIcon = document.querySelector('#theme-toggle i');
+
+            // SET DEFAULT THEME
+            if (!document.documentElement.getAttribute('data-theme')) {
+                document.documentElement.setAttribute('data-theme', 'light');
             }
-        }
-
-        if (themeToggleBtn) {
-            updateThemeIcon();
+        
+            // LOAD SAVED THEME
+            const savedTheme = localStorage.getItem('theme');
+        
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+            }
+        
+            // TOGGLE BUTTON
             themeToggleBtn.addEventListener('click', () => {
-                const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            
+                const currentTheme =
+                    document.documentElement.getAttribute('data-theme');
+            
+                if (currentTheme === 'dark') {
                 
-                if (!isDark) {
-                    document.documentElement.setAttribute('data-theme', 'dark');
-                    localStorage.setItem('theme', 'dark');
-                } else {
-                    document.documentElement.removeAttribute('data-theme');
+                    document.documentElement.setAttribute('data-theme', 'light');
+                
                     localStorage.setItem('theme', 'light');
+                
+                    themeIcon.classList.replace('fa-sun', 'fa-moon');
+                
+                } else {
+                
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                
+                    localStorage.setItem('theme', 'dark');
+                
+                    themeIcon.classList.replace('fa-moon', 'fa-sun');
                 }
-                updateThemeIcon();
             });
-        }
+        
+        });
     </script>
     <script>
         // Navbar scroll effect
