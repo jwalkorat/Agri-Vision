@@ -14,6 +14,8 @@ async function loadLanguage(lang) {
 
         if (translations[key]) {
 
+            element.textContent =
+                translations[key];
             const icon =
                 element.querySelector("i");
 
