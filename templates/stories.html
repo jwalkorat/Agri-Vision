@@ -54,10 +54,17 @@
 <style>
     /* ─── Section Layout ──────────────────────────────────── */
     .stories-section {
-        padding: 120px 0 80px;
-        position: relative;
-        overflow: hidden;
-    }
+    padding: 160px 0 80px;
+    position: relative;
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(46,139,87,0.03) 0%,
+            rgba(46,139,87,0.06) 100%
+        );
+}
 
     /* Subtle ambient background blobs (mirrors hero blobs pattern) */
     .stories-section::before {
@@ -71,6 +78,8 @@
         border-radius: 50%;
         pointer-events: none;
         z-index: 0;
+        filter: blur(50px);
+    opacity: 0.8;
     }
     .stories-section::after {
         content: '';
@@ -83,12 +92,14 @@
         border-radius: 50%;
         pointer-events: none;
         z-index: 0;
+        filter: blur(45px);
+    opacity: 0.8;
     }
 
     /* ─── Section Header ──────────────────────────────────── */
     .stories-header {
         text-align: center;
-        margin-bottom: 64px;
+        margin-bottom: 32px;
         position: relative;
         z-index: 1;
     }
@@ -142,40 +153,54 @@
 
     /* ─── Cards Grid ──────────────────────────────────────── */
     .stories-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    align-items: start;
+    position: relative;
+    z-index: 1;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+@media (max-width: 1024px) {
+    .stories-grid { 
+        grid-template-columns: repeat(2, 1fr);
         gap: 28px;
-        position: relative;
-        z-index: 1;
-        max-width: 1140px;
-        margin: 0 auto;
-        padding: 0 24px;
     }
+}
 
-    @media (max-width: 1024px) {
-        .stories-grid { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 640px) {
+    .stories-grid { 
+        grid-template-columns: 1fr; 
+        padding: 0 16px;
+        gap: 24px;
     }
-
-    @media (max-width: 640px) {
-        .stories-grid { grid-template-columns: 1fr; padding: 0 16px; }
-        .stories-section { padding: 100px 0 60px; }
-    }
+    .stories-section { padding: 100px 0 60px; }
+}
 
     /* ─── Story Card ──────────────────────────────────────── */
     .story-card {
-        position: relative;
-        background: var(--card-bg, rgba(255,255,255,0.85));
-        border: 1px solid var(--card-border, rgba(46,139,87,0.18));
-        border-radius: 18px;
-        padding: 32px 28px 28px;
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-        transition: transform 0.32s cubic-bezier(0.34,1.56,0.64,1),
-                    box-shadow 0.32s ease,
-                    border-color 0.32s ease;
-        cursor: default;
-        overflow: hidden;
+    position: relative;
+    background: var(--card-bg, rgba(255,255,255,0.85));
+    border: 1px solid var(--card-border, rgba(46,139,87,0.18));
+    border-radius: 18px;
+    padding: 32px 28px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-height: auto;
+    height: auto;
+    transition: transform 0.32s cubic-bezier(0.34,1.56,0.64,1),
+                box-shadow 0.32s ease,
+                border-color 0.32s ease;
+    cursor: default;
+    overflow: visible;
+    opacity: 0;
+    transform: translateY(28px);
+    animation: card-reveal 0.55s cubic-bezier(0.22,1,0.36,1) forwards;
+}
         /* Stagger entrance animation */
         opacity: 0;
         transform: translateY(28px);
@@ -226,13 +251,15 @@
     }
 
     .story-card:hover {
-        transform: translateY(-7px) scale(1.015);
-        box-shadow:
-            0 20px 48px rgba(0,0,0,0.13),
-            0 0 0 1px rgba(46,139,87,0.40),
-            0 0 32px rgba(46,139,87,0.14);
-        border-color: rgba(46,139,87,0.45);
-    }
+    transform: translateY(-8px) scale(1.02) rotateZ(-0.5deg);
+
+    box-shadow:
+        0 22px 55px rgba(0,0,0,0.14),
+        0 0 0 1px rgba(46,139,87,0.30),
+        0 0 36px rgba(46,139,87,0.10);
+
+    border-color: rgba(46,139,87,0.45);
+}
 
     .story-card:hover::after {
         opacity: 1;
@@ -249,6 +276,7 @@
         width: 54px;
         height: 54px;
         border-radius: 50%;
+        flex-shrink: 0;
         background: linear-gradient(
             135deg,
             rgba(46,139,87,0.16) 0%,
@@ -265,22 +293,35 @@
         transition: background 0.25s ease, box-shadow 0.25s ease;
     }
 
-    .story-card:hover .story-avatar {
-        background: linear-gradient(
-            135deg,
-            rgba(46,139,87,0.28) 0%,
-            rgba(46,139,87,0.12) 100%
-        );
-        box-shadow: 0 0 18px rgba(46,139,87,0.25);
-        transform: scale(1.05);
-    }
+    .story-avatar {
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease;
+}
+
+.story-card:hover .story-avatar {
+    background: linear-gradient(
+        135deg,
+        rgba(46,139,87,0.30) 0%,
+        rgba(46,139,87,0.12) 100%
+    );
+
+    transform: scale(1.1) rotate(-3deg);
+
+    box-shadow:
+        0 0 22px rgba(46,139,87,0.30),
+        0 8px 20px rgba(46,139,87,0.15);
+}
 
     /* ─── Card: Farmer Name & Location ───────────────────── */
-    .story-meta {
-        display: flex;
-        flex-direction: column;
-        gap: 3px;
-    }
+   .story-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-height: auto;
+    flex-shrink: 0;
+}
 
     .story-name {
         font-size: 1.18rem;
@@ -373,16 +414,18 @@
     }
 
     /* ─── Card: Testimonial Quote ─────────────────────────── */
-    .story-quote {
-        font-size: 0.91rem;
-        line-height: 1.7;
-        color: #5c5c5c;;
-        font-style: italic;
-        position: relative;
-        padding-left: 18px;
-        margin: 0;
-    }
-
+   .story-quote {
+    font-size: 0.91rem;
+    line-height: 1.7;
+    color: #5c5c5c;
+    font-style: italic;
+    position: relative;
+    padding-left: 18px;
+    margin: 12px 0 0 0;
+    min-height: auto;
+    transition: color 0.3s ease;
+    flex-grow: 1;
+}
     /* Left accent bar — mirrors feature-card icon accent */
     .story-quote::before {
         content: '';
@@ -393,11 +436,14 @@
         width: 3px;
         border-radius: 2px;
         background: linear-gradient(
-            180deg,
-            var(--emerald-green, #2e8b57),
-            transparent
-        );
-        opacity: 0.55;
+        180deg,
+        #2e8b57 0%,
+        #5cd391 60%,
+        transparent 100%
+    );
+
+    opacity: 0.75;
+    
     }
 
     /* ─── Dark Theme Overrides ────────────────────────────── */
@@ -449,6 +495,9 @@
         .stories-eyebrow .badge-dot {
             animation: none;
         }
+        .story-card:hover .story-quote {
+    color: #444;
+}
     }
 </style>
 
@@ -605,6 +654,35 @@
                 "Agri-Vision helped me monitor crop health in real time and improved my farming decisions."
             </p>
         </div>
+
+        
+        <!-- Farmer 7 — Manpreet Singh -->
+        <div class="story-card">
+            <div class="story-avatar">
+                MS
+            </div>
+
+            <div class="story-meta">
+                <span class="story-name">Manpreet Singh</span>
+                <span class="story-location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    Punjab
+                </span>
+            </div>
+
+            <div class="story-yield-badge">
+                <span class="yield-icon"><i class="fas fa-arrow-up"></i></span>
+                <span class="yield-label">Yield:</span>
+                <span class="yield-value">+38%</span>
+            </div>
+
+            <hr class="story-divider">
+
+            <p class="story-quote">
+                "Agri-Vision helped me identify crop stress and disease symptoms much earlier than traditional field inspections."
+            </p>
+        </div>
+
 
     </div>
 </section>
